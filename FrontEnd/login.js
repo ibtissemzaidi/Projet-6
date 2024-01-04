@@ -1,6 +1,5 @@
 const submit = document.getElementById("submit");
 const form = document.querySelector(".login__form");
-let users = localStorage.getItem("token");
 form.addEventListener("submit", function () {
   const email = document.getElementById("email").value;
   const motDePasse = document.getElementById("password").value;

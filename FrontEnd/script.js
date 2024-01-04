@@ -59,3 +59,28 @@ async function getcategories() {
   });
 }
 getcategories();
+
+const token = userInfo.token;
+const loginButton = document.getElementById("loginButton");
+const containerModal = document.querySelector(".containerModal");
+const xmark = document.querySelector(".containerModal .fa-xmark");
+const logoutButton = document.getElementById("logoutButton");
+
+/******  Vérifier si l'utilisateur est connecté *******/
+if (localStorage.getItem("token")) {
+  const loginButton = document.getElementById("loginButton");
+  loginButton.textContent = "logout";
+  logoutButton.addEventListener("click", () => {
+    containerModal.style.display = "flex";
+  });
+  xmark.addEventListener("click", () => {
+    containerModal.style.display = "none";
+  });
+  containerModal.addEventListener("click", (e) => {
+    if (e.target.classeName === "containerModal") {
+      containerModal.containerModal.style.display = "none";
+    }
+  });
+} else {
+  loginButton.innerHTML = '<a href="login.html">login</a>';
+}
