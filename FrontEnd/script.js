@@ -61,16 +61,16 @@ async function getcategories() {
 getcategories();
 
 //Afficher la Modal
-const token = localStorage.getItem("token");
+const token = sessionStorage.getItem("token");
 const loginButton = document.getElementById("loginButton");
 const containerModal = document.querySelector(".containerModal");
 const xmark = document.querySelector(".containerModal .fa-xmark");
 const logoutButton = document.getElementById("logoutButton");
-
+const buttonModifier = document.getElementById("modifier")
 /******  Vérifier si l'utilisateur est connecté *******/
 if (token) {
   loginButton.textContent = "logout";
-  logoutButton.addEventListener("click", () => {
+  buttonModifier.addEventListener("click", () => {
     containerModal.style.display = "flex";
   });
   xmark.addEventListener("click", () => {
