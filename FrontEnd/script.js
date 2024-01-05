@@ -60,15 +60,15 @@ async function getcategories() {
 }
 getcategories();
 
-const token = userInfo.token;
+//Afficher la Modal
+const token = localStorage.getItem("token");
 const loginButton = document.getElementById("loginButton");
 const containerModal = document.querySelector(".containerModal");
 const xmark = document.querySelector(".containerModal .fa-xmark");
 const logoutButton = document.getElementById("logoutButton");
 
 /******  Vérifier si l'utilisateur est connecté *******/
-if (localStorage.getItem("token")) {
-  const loginButton = document.getElementById("loginButton");
+if (token) {
   loginButton.textContent = "logout";
   logoutButton.addEventListener("click", () => {
     containerModal.style.display = "flex";
@@ -77,8 +77,8 @@ if (localStorage.getItem("token")) {
     containerModal.style.display = "none";
   });
   containerModal.addEventListener("click", (e) => {
-    if (e.target.classeName === "containerModal") {
-      containerModal.containerModal.style.display = "none";
+    if (e.target.className === "containerModal") {
+    containerModal.style.display = "none";
     }
   });
 } else {
