@@ -66,7 +66,7 @@ const loginButton = document.getElementById("loginButton");
 const containerModal = document.querySelector(".containerModal");
 const xmark = document.querySelector(".containerModal .fa-xmark");
 const logoutButton = document.getElementById("logoutButton");
-const buttonModifier = document.getElementById("modifier")
+const buttonModifier = document.querySelector(".admin__modifer")
 /******  Vérifier si l'utilisateur est connecté *******/
 if (token) {
   loginButton.textContent = "logout";
@@ -84,3 +84,26 @@ if (token) {
 } else {
   loginButton.innerHTML = '<a href="login.html">login</a>';
 }
+//Affichage des travaux dans la modal
+const galerieModal = document.querySelector(".galerieModal");
+async function displayGalerieModal() {
+  galerieModal.innerHTML = ""
+  const galerie = await getData()
+  console.log(galerie);
+
+  galerie.forEach((works) => {
+    const figure = document.createElement("figure")
+    const img = document.createElement("img")
+    const span = document.createElement("span")
+    const trash = document.createElement("i")
+    trash.classList.add("fa-solid", "fa-trash-can")
+    trash.id = category.id
+    img.src = category.imageUrl
+    span.appendChild(trash)
+    figure.appendChild(img)
+   figure.appendChild(span)
+    
+    galerieModal.appendChild(figure)
+  })
+}
+displayGalerieModal();

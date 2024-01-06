@@ -102,6 +102,17 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+.portfolio-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  .admin__modifer {
+	display: flex;
+	-moz-column-gap: 5px;
+		 column-gap: 5px;
+	color: black;
+  }
 .filters {
 	display: flex;
 	justify-content: center;
@@ -278,36 +289,45 @@ footer nav ul {
   }
   .modalGalerie {
 	border-radius: 5px;
-	border-color: #ff0000;
     background: #FFF;
-	width: 30%;
-	height: 70%;
+	width: 50%;
+	height: 60%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
 	position: relative;
-	}
+	position: relative;
+    }
+	.modalGalerie h2 {
+	color: #000;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: normal;
+	margin-top: 0px;
+	margin-bottom: 200px;
+		}
 	.fa-xmark {
 		position: absolute;
 		top: 20px;
 		right: 20px;
 		cursor: pointer;
 	}
-	.modalGalerie button:hover {
-		color: #1D6154;
-		background-color: white;
-		scale: 1.05;
+	
+	.line {
+	    width: 68%;
+	    height: 1px;
+	    background: #B3B3B3;
 	}
-	#modifier {
-		color: #000;
-
-		text-align: center;
-		font-family: Work Sans;
-		font-size: 14px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal
+	#modalbutton {
+	   font-family: 'Syne';
+	   color: white;
+	   background-color: #1D6154;
+	   border-radius: 60px;
+	   width: 237px;
+	   height: 36px;
 	}
 
 
