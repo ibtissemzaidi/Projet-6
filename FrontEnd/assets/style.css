@@ -109,10 +109,76 @@ li:hover {
   }
   .admin__modifer {
 	display: flex;
-	-moz-column-gap: 5px;
-		 column-gap: 5px;
+	column-gap: 5px;
 	color: black;
+	align-items: center;
+	justify-content: center;
+
   }
+
+
+.gallery-modal {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 21px;
+    gap: 10px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #B3B3B3;
+
+
+}
+
+
+.gallery-modal figure {
+    position: relative;
+    width: calc(100%/5 - 10px)
+}
+
+
+i.fa-solid.fa-trash-can {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+
+.galerieModal {
+    display: flex;
+	position: fixed;
+
+
+}
+.galerieModal figure {
+    position: relative;
+
+    width: calc(100%/5 - 10px)
+}
+
+
+.galerieModal img {
+    width: 129px;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+input#texte {
+    width: 420px;
+    height: 169px;
+    border-radius: 3px;
+    background: #E8F1F6;
+    margin-bottom: 56px;
+    margin-left: 98px;
+}
+
+
+.galerieModal fa-trash-alt:before,
+.galerieModal fa-trash-can:before {
+    color: white;
+    background-color: black;
+    padding: 5px;
+    border-radius: 20%;
+}
 .filters {
 	display: flex;
 	justify-content: center;
@@ -296,7 +362,6 @@ footer nav ul {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
-	position: relative;
 	position: relative;
     }
 	.modalGalerie h2 {
