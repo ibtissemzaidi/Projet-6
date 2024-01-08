@@ -161,17 +161,6 @@ i.fa-solid.fa-trash-can {
     object-fit: cover;
 }
 
-
-input#texte {
-    width: 420px;
-    height: 169px;
-    border-radius: 3px;
-    background: #E8F1F6;
-    margin-bottom: 56px;
-    margin-left: 98px;
-}
-
-
 .galerieModal fa-trash-alt:before,
 .galerieModal fa-trash-can:before {
     color: white;

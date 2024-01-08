@@ -96,8 +96,8 @@ function displaygalerieModal(data) {
     const span = document.createElement("span");
     const trash = document.createElement("i");
     trash.classList.add("fa-solid", "fa-trash-can");
-    trash.id = category.id;
-    img.src = category.imageUrl;
+    trash.id = data[i].id;
+    img.src = data[i].imageUrl;
     span.appendChild(trash);
     figure.appendChild(img);
     figure.appendChild(span);
