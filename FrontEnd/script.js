@@ -7,6 +7,7 @@ async function getData() {
     console.log(data);
 
     generProjets(data);
+    displaygalerieModal(data);
   } catch (error) {
     console.error(
       "Une erreur s'est produite lors de la récupération des données :",
