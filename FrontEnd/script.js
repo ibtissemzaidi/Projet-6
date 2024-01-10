@@ -6,8 +6,8 @@ async function getData() {
     data = await response.json();
     console.log(data);
 
-    generProjets(data);
-    displaygalerieModal(data);
+    generProjets();
+    displaygalerieModal();
   } catch (error) {
     console.error(
       "Une erreur s'est produite lors de la récupération des données :",
@@ -16,7 +16,7 @@ async function getData() {
   }
 }
 getData();
-function generProjets(data) {
+function generProjets() {
   //effacer le contenue de la balise body
   document.querySelector(".gallery").innerHTML = "";
 
@@ -88,8 +88,9 @@ if (token) {
 
 //Affichage des travaux dans la modal
 const galerieModal = document.querySelector(".galerieModal");
-galerieModal.innerHTML = "";
-function displaygalerieModal(data) {
+
+function displaygalerieModal() {
+  galerieModal.innerHTML = "";
   console.log(data);
   for (let i = 0; i < data.length; i++) {
     const figure = document.createElement("figure");
@@ -98,6 +99,22 @@ function displaygalerieModal(data) {
     const trash = document.createElement("i");
     trash.classList.add("fa-solid", "fa-trash-can");
     trash.id = data[i].id;
+    trash.addEventListener("click", async function () {
+      const response = await fetch(
+        "http://localhost:5678/api/works/" + data[i].id,
+        {
+          method: "delete",
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+          },
+        }
+      );
+      if (response.ok) {
+        data = data.filter((d) => d.id !== data[i].id);
+        generProjets();
+        displaygalerieModal();
+      }
+    });
     img.src = data[i].imageUrl;
     span.appendChild(trash);
     figure.appendChild(img);
@@ -106,3 +123,45 @@ function displaygalerieModal(data) {
     galerieModal.appendChild(figure);
   }
 }
+const modalButton = document.getElementById("modalbutton");
+const addWorkModal = document.querySelector(".addWorkModal");
+
+// Fonction pour ouvrir la modal d'ajout de travaux
+function openAddWorkModal() {
+  console.log("Clic sur le bouton Ajouter une photo");
+  addWorkModal.style.display = "flex";
+}
+
+// Fonction pour fermer la modal d'ajout de travaux
+function closeAddWorkModal() {
+  const addWorkModal = document.querySelector(".addWorkModal");
+  addWorkModal.style.display = "none";
+}
+modalButton.addEventListener("click", openAddWorkModal);
+
+// Ajouter l'écouteur d'événement sur le bouton modal
+modalButton.addEventListener("click", openAddWorkModal);
+
+// Écouter le clic sur le bouton pour ouvrir la modal
+const addWorkButton = document.getElementById("addWorkButton");
+addWorkButton.addEventListener("click", openAddWorkModal);
+
+// Écouter le clic sur le bouton de fermeture de la modal
+const closeModalButton = document.querySelector(".addWorkModal .closeModal");
+closeModalButton.addEventListener("click", closeAddWorkModal);
+
+// Écouter la soumission du formulaire pour ajouter un travail
+const addWorkForm = document.getElementById("addWorkForm");
+addWorkForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  // Récupérer les valeurs du formulaire
+  const workTitle = document.getElementById("workTitle").value;
+  const workImage = document.getElementById("workImage").value;
+  const workCategory = document.getElementById("workCategory").value;
+
+  // Faire quelque chose avec les valeurs (par exemple, envoyer au serveur)
+
+  // Fermer la modal d'ajout de travaux
+  closeAddWorkModal();
+});
