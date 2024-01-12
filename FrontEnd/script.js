@@ -71,6 +71,11 @@ const buttonModifier = document.querySelector(".admin__modifer");
 /******  Vérifier si l'utilisateur est connecté *******/
 if (token) {
   loginButton.textContent = "logout";
+  const banner = document.querySelector(".banner");
+  banner.innerHTML =
+    '<i class="fa-solid fa-pen-to-square" style="color: white;"></i>' +
+    "<h2>Mode édition</h2>";
+  banner.classList.add("visibleBanner");
   buttonModifier.addEventListener("click", () => {
     containerModal.style.display = "flex";
   });
@@ -123,45 +128,53 @@ function displaygalerieModal() {
     galerieModal.appendChild(figure);
   }
 }
-const modalButton = document.getElementById("modalbutton");
-const addWorkModal = document.querySelector(".addWorkModal");
+const btnAjouterProjet = document.getElementById("modalbutton");
+btnAjouterProjet.addEventListener("click", () => {
+  const addWorkModal = document.querySelector(".addWorkModal");
+  addWorkModal.style.display = "flex";
+});
 
 // Fonction pour ouvrir la modal d'ajout de travaux
-function openAddWorkModal() {
-  console.log("Clic sur le bouton Ajouter une photo");
-  addWorkModal.style.display = "flex";
+async function addWork() {
+  const title = document.querySelector(".js-title").value;
+  const categoryId = document.querySelector(".js-categoryId").value;
+  const image = document.querySelector(".js-image").files[0];
+
+  if (title === "" || categoryId === "" || image === undefined) {
+    alert("Merci de remplir tous les champs");
+    return;
+  } else if (categoryId !== "1" && categoryId !== "2" && categoryId !== "3") {
+    alert("Merci de choisir une catégorie valide");
+    return;
+  } else {
+    try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("category", categoryId);
+      formData.append("image", image);
+
+      const response = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (response.status === 201) {
+        alert("Projet ajouté avec succès :)");
+        generProjets();
+        displaygalerieModal();
+      } else if (response.status === 400) {
+        alert("Merci de remplir tous les champs");
+      } else if (response.status === 500) {
+        alert("Erreur serveur");
+      } else if (response.status === 401) {
+        alert("Vous n'êtes pas autorisé à ajouter un projet");
+        window.location.href = "login.html";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
-
-// Fonction pour fermer la modal d'ajout de travaux
-function closeAddWorkModal() {
-  const addWorkModal = document.querySelector(".addWorkModal");
-  addWorkModal.style.display = "none";
-}
-modalButton.addEventListener("click", openAddWorkModal);
-
-// Ajouter l'écouteur d'événement sur le bouton modal
-modalButton.addEventListener("click", openAddWorkModal);
-
-// Écouter le clic sur le bouton pour ouvrir la modal
-const addWorkButton = document.getElementById("addWorkButton");
-addWorkButton.addEventListener("click", openAddWorkModal);
-
-// Écouter le clic sur le bouton de fermeture de la modal
-const closeModalButton = document.querySelector(".addWorkModal .closeModal");
-closeModalButton.addEventListener("click", closeAddWorkModal);
-
-// Écouter la soumission du formulaire pour ajouter un travail
-const addWorkForm = document.getElementById("addWorkForm");
-addWorkForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  // Récupérer les valeurs du formulaire
-  const workTitle = document.getElementById("workTitle").value;
-  const workImage = document.getElementById("workImage").value;
-  const workCategory = document.getElementById("workCategory").value;
-
-  // Faire quelque chose avec les valeurs (par exemple, envoyer au serveur)
-
-  // Fermer la modal d'ajout de travaux
-  closeAddWorkModal();
-});

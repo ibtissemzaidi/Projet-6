@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-	 
+    <div class="banner"></div>	 
 
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -138,7 +138,7 @@
 		<h2>Galerie photo</h2>
 		<div class="galerieModal"></div>
 		<div class="line"></div>
-		<button id="modalbutton"> Ajouter une photo</button>
+		<button id="modalbutton">Ajouter un projet</button> 
 		  
 
     </div>
@@ -146,26 +146,40 @@
 
 </div>
 <!-- Ajout de travaux Modal -->
-<div class="addWorkModal">
+
+<div class="addWorkModal" >
 	<span>
 		<i class="fa-sharp fa-solid fa-xmark" aria-hidden="true"></i>
 		<i class="fa-solid fa-arrow-left"></i>
 
 	</span>
 	<h2>Ajout photo</h2>
-	<form id="addWorkForm">
-	  <label for="workTitle">Titre</label>
-	  <input type="text" id="workTitle" name="workTitle" required>
-  
-	  <label for="workImage">URL de l'image</label>
-	  <input type="text" id="workImage" name="workImage" required>
-  
-	  <label for="workCategory">Catégories</label>
-	  <input type="text" id="workCategory" name="workCategory" required>
-  
-	  <button type="submit">Valider</button>
+	<form method="post" class="addWorkForm" enctype="multipart/form-data">
+		<div  class="form-group-photo">
+			<i class="fa-regular fa-image"></i>
+			<label for="photo">+ Ajouter une photo</label>
+			<input type="file" name="photo" id="photo" class="js-image">
+			<img src="#" class="photo" alt="">
+			<p>jpg, png : 4mo max</p>
+		</div>
+		<div class="form-group-title">
+			<label for="title">Titre</label>
+			<input class="js-title" type="text" name="titre" id="titre">
+		</div>
+		<div class="formCategorie">
+			<label for="categorie">Catégorie</label>
+			<select name="categorie" id="categorie" class="js-categoryId"required>
+				<option value="1">Objets</option>
+				<option value="2">Appartements</option>
+				<option value="3">Hôtels & restaurants</option>
+            </select>
+		</div>
+		<span class="line"></span>
+		<input type="submit" id="submitButton" value="Valider" class="js-add-work">
 	</form>
   </div>
 <script src="script.js"></script>
 </body>
 </html>
+
+
