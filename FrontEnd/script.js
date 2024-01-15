@@ -89,6 +89,7 @@ if (token) {
   });
 } else {
   loginButton.innerHTML = '<a href="login.html">login</a>';
+  banner.classList.add("invisibleBanner");
 }
 
 //Affichage des travaux dans la modal
@@ -177,4 +178,11 @@ async function addWork() {
       console.log(error);
     }
   }
+
+  const btnAjouterProjet = document.getElementById("modalbutton");
+  btnAjouterProjet.addEventListener("click", () => {
+    const addWorkModal = document.querySelector(".addWorkModal");
+    galerieModal.style.display = "none";
+    addWorkModal.style.display = "flex";
+  });
 }
