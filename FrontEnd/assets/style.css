@@ -416,19 +416,33 @@ footer nav ul {
 
 	.addWorkModal {
 		display: none;
-		position: fixed;
-		width: 50%;
-	    height: 50%;
-		align-items: center;
-		justify-content: center;
-		
-		background-color: rgba(0, 0, 0, 0.5);
-		animation: fadeIn 0.4s both;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000
+
 	}
 	.addWorkModal span {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	  }
+	  .fa-arrow-left {
+	    position: fixed;
+	    top: 10px;
+        left: 10px;
+        width: 21px;
+	    height: 18px;
+	}
+	.addWorkModal h2 {
+		position: absolute;
+		text-align: center;
+        margin-top: 0; 
+        margin-bottom: 20px; 
 	  }
 	  .form-group-photo {
 		display: flex;
@@ -467,7 +481,6 @@ footer nav ul {
 	  }
 	  
 	  .form-group-photo::after {
-		content: "jpg, png : 4mo max";
 		position: absolute;
 		top: 315px;
 	  }

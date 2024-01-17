@@ -89,7 +89,6 @@ if (token) {
   });
 } else {
   loginButton.innerHTML = '<a href="login.html">login</a>';
-  banner.classList.add("invisibleBanner");
 }
 
 //Affichage des travaux dans la modal
@@ -133,6 +132,7 @@ const btnAjouterProjet = document.getElementById("modalbutton");
 btnAjouterProjet.addEventListener("click", () => {
   const addWorkModal = document.querySelector(".addWorkModal");
   addWorkModal.style.display = "flex";
+  galerieModal.style.display = "none";
 });
 
 // Fonction pour ouvrir la modal d'ajout de travaux
@@ -164,8 +164,6 @@ async function addWork() {
 
       if (response.status === 201) {
         alert("Projet ajouté avec succès :)");
-        generProjets();
-        displaygalerieModal();
       } else if (response.status === 400) {
         alert("Merci de remplir tous les champs");
       } else if (response.status === 500) {
@@ -174,15 +172,11 @@ async function addWork() {
         alert("Vous n'êtes pas autorisé à ajouter un projet");
         window.location.href = "login.html";
       }
+      xmark.addEventListener("click", () => {
+        addWorkModal.style.display = "none";
+      });
     } catch (error) {
       console.log(error);
     }
   }
-
-  const btnAjouterProjet = document.getElementById("modalbutton");
-  btnAjouterProjet.addEventListener("click", () => {
-    const addWorkModal = document.querySelector(".addWorkModal");
-    galerieModal.style.display = "none";
-    addWorkModal.style.display = "flex";
-  });
 }
