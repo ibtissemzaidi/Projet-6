@@ -51,11 +51,11 @@
 	<section id="portfolio">
 		<div class="portfolio-title">
 		<h2>Mes Projets</h2>
-		<div class="admin__modifer" aria-hidden="true" style="display: flex;">
+		<span class="admin__modifer" aria-hidden="true" style="display: flex;">
 			<i class="fa-solid fa-pen-to-square"></i>
 			<a href="#modale" class="js-modale">Modifier</a>
-		</div>
-	   </div>
+		</span>
+	  </div>
 		<div class="filters">
 			<button id="0">Tous</button>
 		</div>
@@ -167,15 +167,15 @@
 			<input class="js-title" type="text" name="titre" id="titre">
 		</div>
 		<div class="formCategorie">
+			<label for="categorie">categorie</label>
 			
 			<select name="categorie" id="categorie" class="js-categoryId"required>
-				<option value="" disabled selected hidden>Catégories</option>
+				<option value="" disabled selected hidden></option>
 				<option value="1">Objets</option>
 				<option value="2">Appartements</option>
 				<option value="3">Hôtels & restaurants</option>
             </select>
 		</div>
-		<span class="line"></span>
 		<input type="submit" id="submitButton" value="Valider" class="js-add-work">
 	  </form>
     </div>

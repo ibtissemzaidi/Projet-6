@@ -1,4 +1,14 @@
 let data = [];
+// Ajoutezl a gestion de l'événement pour la flèche de retour
+const backToGalleryButton = document.querySelector(".fa-arrow-left");
+backToGalleryButton.addEventListener("click", () => {
+  const addWorkModal = document.querySelector(".addWorkModal");
+  const modalGalerie = document.querySelector(".modalGalerie");
+
+  // Masquer la deuxième modal et afficher la première
+  addWorkModal.style.display = "none";
+  modalGalerie.style.display = "block";
+});
 async function getData() {
   const api = "http://localhost:5678/api/works";
   try {
@@ -16,23 +26,25 @@ async function getData() {
   }
 }
 getData();
-function generProjets() {
+function generProjets(filterData) {
   //effacer le contenue de la balise body
   document.querySelector(".gallery").innerHTML = "";
 
+  if (filterData === undefined) {
+    filterData = data;
+  }
   // Génère les projets
 
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < filterData.length; i++) {
     const figure = document.createElement("figure");
     const sectionProjets = document.querySelector(".gallery");
-    // figure.classList.add(`js-projet-${data[i].id}`); // Ajoute l'id du projet pour le lien vers la modale lors de la supression
     const img = document.createElement("img");
-    img.src = data[i].imageUrl;
-    img.alt = data[i].title;
+    img.src = filterData[i].imageUrl;
+    img.alt = filterData[i].title;
     figure.appendChild(img);
 
     const figcaption = document.createElement("figcaption");
-    figcaption.innerHTML = data[i].title;
+    figcaption.innerHTML = filterData[i].title;
     figure.appendChild(figcaption);
     sectionProjets.appendChild(figure);
   }
@@ -44,7 +56,7 @@ async function getcategories() {
   console.log(categories);
   const btnTous = document.querySelector(".filters button");
   btnTous.addEventListener("click", (e) => {
-    generProjets(data);
+    generProjets(filterdata);
   });
   categories.forEach((category) => {
     const btn = document.createElement("button");
@@ -79,8 +91,12 @@ if (token) {
   buttonModifier.addEventListener("click", () => {
     containerModal.style.display = "flex";
   });
-  xmark.addEventListener("click", () => {
-    containerModal.style.display = "none";
+  const xmarks = document.querySelectorAll(".containerModal .fa-xmark");
+
+  xmarks.forEach((xmark) => {
+    xmark.addEventListener("click", () => {
+      containerModal.style.display = "none";
+    });
   });
   containerModal.addEventListener("click", (e) => {
     if (e.target.className === "containerModal") {
@@ -128,11 +144,17 @@ function displaygalerieModal() {
     galerieModal.appendChild(figure);
   }
 }
+
 const btnAjouterProjet = document.getElementById("modalbutton");
 btnAjouterProjet.addEventListener("click", () => {
   const addWorkModal = document.querySelector(".addWorkModal");
-  addWorkModal.style.display = "flex";
-  galerieModal.style.display = "none";
+  addWorkModal.style.display = "block";
+  const modalGalerie = document.querySelector(".modalGalerie");
+  modalGalerie.style.display = "none";
+});
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  addWork();
 });
 
 // Fonction pour ouvrir la modal d'ajout de travaux
@@ -163,7 +185,12 @@ async function addWork() {
       });
 
       if (response.status === 201) {
-        alert("Projet ajouté avec succès :)");
+        if (response.status === 201) {
+          const addWorkModal = document.querySelector(".addWorkModal");
+          addWorkModal.style.display = "none";
+          modaleGalerie.style.display = "block";
+          getData();
+        }
       } else if (response.status === 400) {
         alert("Merci de remplir tous les champs");
       } else if (response.status === 500) {
@@ -172,9 +199,6 @@ async function addWork() {
         alert("Vous n'êtes pas autorisé à ajouter un projet");
         window.location.href = "login.html";
       }
-      xmark.addEventListener("click", () => {
-        addWorkModal.style.display = "none";
-      });
     } catch (error) {
       console.log(error);
     }

@@ -55,6 +55,7 @@ body {
 	font-size: 14px;
 }
 .banner {
+	display: none;
 	width: 1440px;
     height: 59px;
     flex-shrink: 0;
@@ -127,6 +128,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	color: #000;
 }
 
 li:hover {
@@ -134,16 +136,20 @@ li:hover {
 }
 .portfolio-title {
 	display: flex;
+	gap: 30px;
 	justify-content: center;
 	align-items: center;
   }
   .admin__modifer {
 	display: flex;
-	column-gap: 5px;
+	column-gap: 10px;
 	color: black;
 	align-items: center;
 	justify-content: center;
 
+  }
+  .admin__modifer a {
+	color: #000;
   }
 
 .filters {
@@ -194,7 +200,6 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -323,8 +328,8 @@ footer nav ul {
   .modalGalerie {
 	border-radius: 5px;
     background: #FFF;
-	width: 50%;
-	height: 50%;
+	width: 630px;
+    height: 688px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -346,6 +351,7 @@ footer nav ul {
 		top: 20px;
 		right: 20px;
 		cursor: pointer;
+		z-index: 1000;
 	}
 	
 .galerieModal {
@@ -387,9 +393,9 @@ footer nav ul {
 	cursor: pointer;
 }
 .line {
-	    width: 68%;
-	    height: 1px;
-	    background: #B3B3B3;
+	width: 420px;
+	height: 1px;
+    background: #B3B3B3;
 	}
 	#modalbutton {
 	   font-family: 'Syne';
@@ -416,14 +422,16 @@ footer nav ul {
 
 	.addWorkModal {
 		display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 1000
+        position: fixed;
+		width: 630px;
+		height: 670px;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       background-color: #fff;
+       padding: 20px;
+       border-radius: 10px;
+       z-index: 1000
 
 	}
 	.addWorkModal span {
@@ -439,7 +447,7 @@ footer nav ul {
 	    height: 18px;
 	}
 	.addWorkModal h2 {
-		position: absolute;
+		position: relative;
 		text-align: center;
         margin-top: 0; 
         margin-bottom: 20px; 
@@ -450,7 +458,7 @@ footer nav ul {
 		justify-content: center;
 		align-items: center;
 		background-color: #E8F1F7;
-		width: 500px;
+		width: 100%;
 		height: 200px;
 		border-radius: 10px;
 	  }
@@ -518,21 +526,19 @@ footer nav ul {
 }
 
 .addWorkForm input[type=submit] {
-  font-family: "Syne";
-  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   background-color: #1D6154;
   border: 2px solid #1D6154;
-  margin: 120px 0 30px 0;
-  height: 50px;
-  width: 250px;
-  text-align: center;
+  height: 36px;
+  width: 237px;
   border-radius: 60px;
   transition: all 0.5s ease;
 }
 .addWorkForm::after {
 	content: " ";
-	border-top: 1px solid black;
 	height: 1px;
 	width: 70%;
 	margin: 40px auto;
