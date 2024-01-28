@@ -461,7 +461,14 @@ footer nav ul {
 		height: 200px;
 		border-radius: 10px;
 	  }
-	 
+	  .form-group-photo img {
+		max-width: 100%; /* Ajustez cette valeur selon vos besoins pour contrôler la largeur maximale de l'image */
+		max-height: 200px; /* Ajoutez cette ligne pour définir une hauteur maximale, ajustez selon vos préférences */
+		border-radius: 10px;
+		box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+		margin-top: 10px;
+	
+	}
 	  .form-group-photo i {
 		color: #306685;
 		font-size: 90px;

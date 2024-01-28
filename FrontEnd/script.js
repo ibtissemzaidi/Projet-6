@@ -203,3 +203,49 @@ async function addWork() {
     }
   }
 }
+
+// Sélection de la balise input de type file
+const inputPhoto = document.getElementById("photo");
+
+// Sélection de la balise img où afficher la photo
+const previewImage = document.getElementById("previewImage");
+
+// Écoute de l'événement de changement du input file
+inputPhoto.addEventListener("change", (event) => {
+  // Récupération du fichier sélectionné
+  const selectedFile = event.target.files[0];
+
+  // Vérification s'il y a un fichier sélectionné
+  if (selectedFile) {
+    // Création d'un objet URL pour le fichier
+    const objectURL = URL.createObjectURL(selectedFile);
+    const iconElement = document.querySelector(".form-group-photo i");
+    const paragraphElement = document.querySelector(".form-group-photo p");
+    const labelElement = document.querySelector(".form-group-photo label");
+
+    // Affichage de l'image dans la balise img
+    previewImage.src = objectURL;
+
+    // Masquez les éléments
+    iconElement.style.display = "none";
+    paragraphElement.style.display = "none";
+    labelElement.style.display = "none";
+    // Affichage du bouton "Valider"
+    document.getElementById("submitButton").style.display = "block";
+  }
+});
+
+// Écoute de l'événement du bouton "Valider"
+document.getElementById("submitButton").addEventListener("click", () => {
+  // Suppression de l'image dans la balise img
+  previewImage.src = "";
+
+  // Cacher la balise img
+  previewImage.style.display = "none";
+
+  // Cacher le bouton "Valider"
+  document.getElementById("submitButton").style.display = "none";
+
+  // Réinitialiser la valeur du input file pour permettre la sélection du même fichier
+  inputPhoto.value = "";
+});
