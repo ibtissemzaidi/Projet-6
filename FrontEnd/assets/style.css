@@ -56,7 +56,7 @@ body {
 }
 .banner {
 	display: none;
-	width: 1440px;
+	width: 100%;
     height: 59px;
     flex-shrink: 0;
     
@@ -423,8 +423,7 @@ footer nav ul {
 	.addWorkModal {
 		display: none;
         position: fixed;
-		width: 630px;
-		height: 670px;
+		width: 60%;
        top: 50%;
        left: 50%;
        transform: translate(-50%, -50%);
@@ -462,6 +461,7 @@ footer nav ul {
 		height: 200px;
 		border-radius: 10px;
 	  }
+	 
 	  .form-group-photo i {
 		color: #306685;
 		font-size: 90px;
@@ -495,7 +495,6 @@ footer nav ul {
 	  .form-group-title {
 		display: flex;
 		flex-direction: column;
-		width: 500px;
 	  }
 	  
 	  .form-group-title input {
@@ -511,7 +510,6 @@ footer nav ul {
 .formCategorie {
   display: flex;
   flex-direction: column;
-  width: 500px;
 }
 
 .formCategorie select {

@@ -56,7 +56,7 @@ async function getcategories() {
   console.log(categories);
   const btnTous = document.querySelector(".filters button");
   btnTous.addEventListener("click", (e) => {
-    generProjets(filterdata);
+    generProjets();
   });
   categories.forEach((category) => {
     const btn = document.createElement("button");
@@ -185,12 +185,11 @@ async function addWork() {
       });
 
       if (response.status === 201) {
-        if (response.status === 201) {
-          const addWorkModal = document.querySelector(".addWorkModal");
-          addWorkModal.style.display = "none";
-          modaleGalerie.style.display = "block";
-          getData();
-        }
+        const addWorkModal = document.querySelector(".addWorkModal");
+        addWorkModal.style.display = "none";
+        const modaleGalerie = document.querySelector(".modalGalerie");
+        modaleGalerie.style.display = "block";
+        getData();
       } else if (response.status === 400) {
         alert("Merci de remplir tous les champs");
       } else if (response.status === 500) {
