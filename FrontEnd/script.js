@@ -27,7 +27,7 @@ async function getData() {
 }
 getData();
 function generProjets(filterData) {
-  //effacer le contenue de la balise body
+  //effacer le contenue de la balise gallerie
   document.querySelector(".gallery").innerHTML = "";
 
   if (filterData === undefined) {
@@ -83,6 +83,12 @@ const buttonModifier = document.querySelector(".admin__modifer");
 /******  Vérifier si l'utilisateur est connecté *******/
 if (token) {
   loginButton.textContent = "logout";
+  loginButton.href = "#";
+  loginButton.addEventListener("click", () => {
+    sessionStorage.removeItem("token");
+    window.location.href = "index.html";
+  });
+
   const banner = document.querySelector(".banner");
   banner.innerHTML =
     '<i class="fa-solid fa-pen-to-square" style="color: white;"></i>' +
@@ -105,6 +111,8 @@ if (token) {
   });
 } else {
   loginButton.innerHTML = '<a href="login.html">login</a>';
+  const adminModiferSection = document.querySelector(".admin__modifer");
+  adminModiferSection.style.display = "none";
 }
 
 //Affichage des travaux dans la modal
@@ -239,12 +247,6 @@ inputPhoto.addEventListener("change", (event) => {
 document.getElementById("submitButton").addEventListener("click", () => {
   // Suppression de l'image dans la balise img
   previewImage.src = "";
-
-  // Cacher la balise img
-  previewImage.style.display = "none";
-
-  // Cacher le bouton "Valider"
-  document.getElementById("submitButton").style.display = "none";
 
   // Réinitialiser la valeur du input file pour permettre la sélection du même fichier
   inputPhoto.value = "";
